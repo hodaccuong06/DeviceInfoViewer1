@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish' // Add the maven-publish plugin
 }
 
 android {
@@ -26,10 +27,31 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.12.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+// Maven publishing configuration
+publishing {
+    publications {
+        // Create a publication for your library
+        maven(MavenPublication) {
+            // Configure the coordinates of your artifact
+            groupId 'com.navico.deviceinfoviewer'
+            artifactId 'your-library-name'
+            version '0.0.1' // Update with your library version
+
+        }
+    }
+
+    // Configure the repository to publish to (e.g., JitPack)
+    repositories {
+        maven {
+            // Replace this URL with the URL of your Maven repository (e.g., JitPack)
+            url "https://jitpack.io"
+        }
+    }
 }
